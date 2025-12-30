@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Data
+*.csv
+*.parquet
+data/raw/
+data/*.csv
+data/*.parquet
+!data/archive/
+
+# Models (keep structure, ignore large files)
+models/*.pkl
+models/*.onnx
+models/*.json
+models/*.pk
+models/*.settings
+models/*.key
+models/*.ezkl
+models/ezkl/
+
+# EZKL artifacts
+*.ezkl
+*.log
+calibration_data.json
+input.json
+witness.json
+proof.json
+settings.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Logs
+*.log
+training_output.log
+
+# Contracts (generated)
+contracts/Verifier.sol
+
