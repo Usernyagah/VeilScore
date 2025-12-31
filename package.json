@@ -1,0 +1,22 @@
+{
+  "name": "privatezk-credit-scout",
+  "version": "1.0.0",
+  "description": "Private credit scoring with zero-knowledge proofs",
+  "private": true,
+  "scripts": {
+    "dev": "node start-dev.js",
+    "dev:client": "cd client && npm run dev",
+    "dev:api": "cd zkml && python3 -m api.main",
+    "dev:all": "concurrently \"npm run dev:client\" \"npm run dev:api\" --names \"client,api\" --prefix-colors \"blue,green\"",
+    "install:all": "cd client && npm install && cd ../zkml && pip install -r requirements.txt",
+    "build": "cd client && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
+
