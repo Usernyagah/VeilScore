@@ -1,0 +1,14 @@
+node_modules
+.env
+.env.local
+.env.deployment
+*.log
+cache
+artifacts
+typechain-types
+coverage
+coverage.json
+dist
+deployments
+abis
+
