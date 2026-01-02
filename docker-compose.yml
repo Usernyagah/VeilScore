@@ -1,35 +1,8 @@
-version: '3.8'
-
 services:
-  # Backend API Service
-  backend:
+  # Single container with both backend and frontend
+  veilscore:
     build:
-      context: ./zkml
-      dockerfile: Dockerfile
-    container_name: veilscore-backend
-    ports:
-      - "8000:8000"
-    environment:
-      - PYTHONUNBUFFERED=1
-    volumes:
-      # Mount models directory (optional - for persistence)
-      - ./zkml/models:/app/models
-      # Mount data directory if needed
-      - ./zkml/data:/app/data:ro
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    restart: unless-stopped
-    networks:
-      - veilscore-network
-
-  # Frontend Service
-  frontend:
-    build:
-      context: ./client
+      context: .
       dockerfile: Dockerfile
       args:
         # Build args for Vite (these are baked into the build)
@@ -39,17 +12,20 @@ services:
         - VITE_NETWORK_CHAIN_ID=${VITE_NETWORK_CHAIN_ID:-5003}
         - VITE_EXPLORER_URL=${VITE_EXPLORER_URL:-https://explorer.sepolia.mantle.xyz}
         - VITE_WALLETCONNECT_PROJECT_ID=${VITE_WALLETCONNECT_PROJECT_ID:-}
-    container_name: veilscore-frontend
+    container_name: veilscore
     ports:
       - "8080:80"
-    depends_on:
-      backend:
-        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount models directory (optional - for persistence)
+      - ./zkml/models:/app/zkml/models
+      # Mount data directory if needed (read-only)
+      - ./zkml/data:/app/zkml/data:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     restart: unless-stopped
-    networks:
-      - veilscore-network
-
-networks:
-  veilscore-network:
-    driver: bridge
-

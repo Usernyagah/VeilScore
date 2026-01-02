@@ -6,7 +6,7 @@ Provides /prove endpoint for generating credit scores with ZK proofs.
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 import numpy as np
 import pandas as pd
 import lightgbm as lgb
@@ -88,7 +88,7 @@ class ProveResponse(BaseModel):
     """Response from /prove endpoint."""
     score: int = Field(..., description="Credit score (300-850)")
     default_probability: float = Field(..., description="Probability of default (0-1)")
-    explanations: List[Dict[str, any]] = Field(..., description="Top 3 feature impacts")
+    explanations: List[Dict[str, Any]] = Field(..., description="Top 3 feature impacts")
     proof_hex: Optional[str] = Field(None, description="ZK proof (hex encoded)")
     proof_available: bool = Field(..., description="Whether ZK proof was generated")
 
@@ -166,11 +166,18 @@ async def root():
 @app.get("/health")
 async def health():
     """Health check endpoint."""
-    return {
-        "status": "healthy",
-        "model_loaded": model is not None,
-        "features": len(feature_names) if feature_names else 0
-    }
+    try:
+        return {
+            "status": "healthy",
+            "model_loaded": model is not None,
+            "features": len(feature_names) if feature_names is not None else 0
+        }
+    except Exception as e:
+        logger.error(f"Health check error: {e}")
+        return {
+            "status": "unhealthy",
+            "error": str(e)
+        }
 
 
 @app.post("/prove", response_model=ProveResponse)
