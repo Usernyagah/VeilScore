@@ -1,7 +1,5 @@
 # PrivateZK Credit Scout - ZKML Engine
 
-**Winning factor: Trained on 2M+ real loans — explainable private scoring for Mantle RealFi**
-
 A production-ready Zero-Knowledge Machine Learning (ZKML) engine for credit scoring using real LendingClub data. This system provides private, verifiable credit scores with explainable feature impacts, all secured by Groth16 zero-knowledge proofs.
 
 ## Features
@@ -317,7 +315,7 @@ cargo install --git https://github.com/zkonduit/ezkl
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT License
 
 ## Contributing
 
@@ -331,7 +329,5 @@ Contributions welcome! Please open an issue or submit a PR.
 - SHAP for explainability
 
 ---
-
-**Built for Mantle RealFi - Private, Verifiable Credit Scoring**
 
 
