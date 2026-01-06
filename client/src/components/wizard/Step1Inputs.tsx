@@ -95,7 +95,7 @@ export function Step1Inputs({ features, setFeatures, onNext }: Step1InputsProps)
             <Label className="flex items-center gap-2 text-sm">
               Verification Status <FieldTooltip field="verification_status" />
             </Label>
-            <Select value={features.verification_status} onValueChange={(v) => update('verification_status', v as any)}>
+            <Select value={features.verification_status} onValueChange={(v) => update('verification_status', v as BorrowerFeatures['verification_status'])}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="Verified">Verified</SelectItem>
@@ -115,7 +115,7 @@ export function Step1Inputs({ features, setFeatures, onNext }: Step1InputsProps)
             <Label className="flex items-center gap-2 text-sm">
               Home Ownership <FieldTooltip field="home_ownership" />
             </Label>
-            <Select value={features.home_ownership} onValueChange={(v) => update('home_ownership', v as any)}>
+            <Select value={features.home_ownership} onValueChange={(v) => update('home_ownership', v as BorrowerFeatures['home_ownership'])}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="RENT">Rent</SelectItem>

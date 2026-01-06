@@ -55,7 +55,7 @@ export class ApiError extends Error {
   constructor(
     message: string,
     public statusCode?: number,
-    public response?: any
+    public response?: unknown
   ) {
     super(message);
     this.name = 'ApiError';
@@ -164,9 +164,9 @@ async function fetchWithTimeout(
     });
     clearTimeout(timeoutId);
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     clearTimeout(timeoutId);
-    if (error.name === 'AbortError') {
+    if (error instanceof Error && error.name === 'AbortError') {
       throw new TimeoutError(`Request exceeded ${timeoutMs}ms timeout`);
     }
     throw error;
@@ -192,11 +192,11 @@ export async function checkApiHealth(): Promise<ApiHealthResponse> {
     }
 
     return await response.json();
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (error instanceof TimeoutError || error instanceof ApiError) {
       throw error;
     }
-    throw new NetworkError('Failed to connect to API', error);
+    throw new NetworkError('Failed to connect to API', error instanceof Error ? error : undefined);
   }
 }
 
@@ -225,7 +225,7 @@ export async function proveCreditScore(
     // Handle different error status codes
     if (!response.ok) {
       let errorMessage = `API request failed: ${response.statusText}`;
-      let errorData: any = null;
+      let errorData: unknown = null;
 
       try {
         errorData = await response.json();

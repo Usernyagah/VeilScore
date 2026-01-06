@@ -34,8 +34,8 @@ export function Step2Compute({
         title: 'Inference complete',
         description: `Credit score calculated: ${result.score}`,
       });
-    } catch (err: any) {
-      const errorMessage = err.message || 'Failed to compute credit score. Please try again.';
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to compute credit score. Please try again.';
       setError(errorMessage);
       toast({
         title: 'Error',
@@ -60,8 +60,8 @@ export function Step2Compute({
         title: 'Proof generated',
         description: 'ZK proof has been successfully created',
       });
-    } catch (err: any) {
-      const errorMessage = err.message || 'Failed to generate proof. Please try again.';
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to generate proof. Please try again.';
       setError(errorMessage);
       toast({
         title: 'Error',
