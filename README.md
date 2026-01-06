@@ -1,6 +1,16 @@
-# PrivateZK Credit Scout
+# VeilScore (PrivateZK Credit Scout)
 
 Private credit scoring with zero-knowledge proofs on blockchain.
+
+## 🚀 Live Deployment
+
+**Network:** Mantle Sepolia Testnet (Chain ID: 5003)
+
+**Deployed Contracts:**
+- **Verifier:** [`0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD`](https://explorer.sepolia.mantle.xyz/address/0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD)
+- **PrivateCreditLending:** [`0xfc61d92FABc2344385362400b2f7C53BEd4837Dc`](https://explorer.sepolia.mantle.xyz/address/0xfc61d92FABc2344385362400b2f7C53BEd4837Dc)
+
+**Explorer:** [Mantle Sepolia Explorer](https://explorer.sepolia.mantle.xyz)
 
 ## Quick Start
 
@@ -73,10 +83,29 @@ pip install -r requirements.txt
 │   ├── api/        # API endpoints
 │   ├── models/     # Trained ML models
 │   └── requirements.txt
+├── contracts/      # Smart contracts (Hardhat)
+│   ├── contracts/  # Solidity contracts
+│   └── scripts/    # Deployment scripts
+├── Dockerfile      # Unified Dockerfile for deployment
+├── docker-compose.yml  # Docker Compose configuration
 ├── start-dev.sh    # Bash script for concurrent execution
 ├── start-dev.js    # Node.js script for concurrent execution
 └── package.json    # Root package.json for concurrent execution
 ```
+
+## Docker Deployment
+
+### Quick Start with Docker
+
+```bash
+# Build and run
+docker compose up --build
+
+# Access the application
+# Frontend & API: http://localhost:8080
+```
+
+See [DOCKER.md](./DOCKER.md) for detailed Docker documentation.
 
 ## Development
 
@@ -104,7 +133,21 @@ Create `client/.env`:
 
 ```bash
 VITE_API_URL=http://localhost:8000
+VITE_VERIFIER_ADDRESS=0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD
+VITE_PRIVATE_CREDIT_LENDING_ADDRESS=0xfc61d92FABc2344385362400b2f7C53BEd4837Dc
+VITE_NETWORK_CHAIN_ID=5003
+VITE_EXPLORER_URL=https://explorer.sepolia.mantle.xyz
 ```
+
+## Deployed Contracts
+
+**Network:** Mantle Sepolia Testnet (Chain ID: 5003)
+
+**Contract Addresses:**
+- **Verifier:** [`0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD`](https://explorer.sepolia.mantle.xyz/address/0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD)
+- **PrivateCreditLending:** [`0xfc61d92FABc2344385362400b2f7C53BEd4837Dc`](https://explorer.sepolia.mantle.xyz/address/0xfc61d92FABc2344385362400b2f7C53BEd4837Dc)
+
+**Explorer:** [Mantle Sepolia Explorer](https://explorer.sepolia.mantle.xyz)
 
 ## API Endpoints
 
@@ -121,6 +164,8 @@ See `zkml/README.md` for detailed API documentation.
 - 🚀 **Production Ready**: FastAPI REST API with full test coverage
 - ⚡ **Optimized**: Quantized int8 model for fast proofs
 - 📝 **EVM Compatible**: Verifier.sol contract for on-chain verification
+- 🐳 **Docker Ready**: Single unified Dockerfile for easy deployment
+- 🌐 **Deployed**: Smart contracts live on Mantle Testnet
 
 ## Troubleshooting
 
