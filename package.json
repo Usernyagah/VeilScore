@@ -9,7 +9,12 @@
     "dev:api": "cd zkml && python3 -m api.main",
     "dev:all": "concurrently \"npm run dev:client\" \"npm run dev:api\" --names \"client,api\" --prefix-colors \"blue,green\"",
     "install:all": "cd client && npm install && cd ../zkml && pip install -r requirements.txt",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "test:e2e": "pytest tests/e2e/ -v -m e2e",
+    "test:e2e:all": "pytest tests/e2e/ -v",
+    "test:e2e:docker": "pytest tests/e2e/ -v -m docker",
+    "test:e2e:contracts": "pytest tests/e2e/ -v -m contracts",
+    "test:e2e:fast": "pytest tests/e2e/ -v -m 'e2e and not slow'"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

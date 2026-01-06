@@ -1,0 +1,5 @@
+# Requirements for E2E tests
+pytest>=7.4.0
+requests>=2.31.0
+web3>=6.0.0
+

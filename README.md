@@ -199,6 +199,40 @@ server: {
 2. Ensure model files exist in `zkml/models/`
 3. Check backend logs for errors
 
+## Testing
+
+### Unit Tests
+
+```bash
+# Backend tests
+cd zkml && pytest tests/
+
+# Contract tests
+cd contracts && npm test
+
+# Frontend tests
+cd client && npm test
+```
+
+### End-to-End Tests
+
+Comprehensive E2E tests covering the complete application flow:
+
+```bash
+# Run all E2E tests
+npm run test:e2e
+
+# Run specific test suites
+npm run test:e2e:docker      # Docker deployment tests
+npm run test:e2e:contracts   # Smart contract tests
+npm run test:e2e:fast        # Fast tests only
+
+# Or use pytest directly
+pytest tests/e2e/ -v
+```
+
+See [tests/e2e/README.md](./tests/e2e/README.md) for detailed E2E testing documentation.
+
 ## License
 
 MIT

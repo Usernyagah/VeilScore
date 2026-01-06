@@ -6,9 +6,10 @@ services:
       dockerfile: Dockerfile
       args:
         # Build args for Vite (these are baked into the build)
-        - VITE_API_URL=http://localhost:8000
-        - VITE_VERIFIER_ADDRESS=${VITE_VERIFIER_ADDRESS:-}
-        - VITE_PRIVATE_CREDIT_LENDING_ADDRESS=${VITE_PRIVATE_CREDIT_LENDING_ADDRESS:-}
+        # Default to deployed contract addresses if not provided
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
+        - VITE_VERIFIER_ADDRESS=${VITE_VERIFIER_ADDRESS:-0x703e92f670d4D1b7e86f7a5bC9980C5fef07B4dD}
+        - VITE_PRIVATE_CREDIT_LENDING_ADDRESS=${VITE_PRIVATE_CREDIT_LENDING_ADDRESS:-0xfc61d92FABc2344385362400b2f7C53BEd4837Dc}
         - VITE_NETWORK_CHAIN_ID=${VITE_NETWORK_CHAIN_ID:-5003}
         - VITE_EXPLORER_URL=${VITE_EXPLORER_URL:-https://explorer.sepolia.mantle.xyz}
         - VITE_WALLETCONNECT_PROJECT_ID=${VITE_WALLETCONNECT_PROJECT_ID:-}
