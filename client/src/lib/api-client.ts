@@ -273,7 +273,7 @@ export async function proveCreditScore(
     }
 
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Re-throw known errors
     if (
       error instanceof ApiError ||

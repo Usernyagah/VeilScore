@@ -348,7 +348,7 @@ export async function runInference(features: BorrowerFeatures): Promise<Inferenc
         explanations: apiResponse.explanations.map(convertApiExplanation),
         confidence: 1.0 - apiResponse.default_probability, // Convert default prob to confidence
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Log error but don't fail silently
       console.error('[Credit Scoring] API call failed, falling back to mock:', error);
       
@@ -435,9 +435,10 @@ export async function generateProof(
         // API doesn't have proof available, fall back to mock
         console.warn('[Credit Scoring] Proof not available from API, using mock');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // API call failed, fall back to mock
-      console.warn('[Credit Scoring] Proof generation failed, using mock:', error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.warn('[Credit Scoring] Proof generation failed, using mock:', errorMessage);
       // Fall through to mock implementation
     }
   }
