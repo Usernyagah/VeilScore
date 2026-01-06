@@ -80,21 +80,58 @@ pip install -r requirements.txt
 
 ```
 .
-├── client/          # React frontend application
-│   ├── src/        # Source code
-│   └── package.json
-├── zkml/           # ZKML backend (FastAPI)
-│   ├── api/        # API endpoints
-│   ├── models/     # Trained ML models
-│   └── requirements.txt
-├── contracts/      # Smart contracts (Hardhat)
-│   ├── contracts/  # Solidity contracts
-│   └── scripts/    # Deployment scripts
-├── Dockerfile      # Unified Dockerfile for deployment
-├── docker-compose.yml  # Docker Compose configuration
-├── start-dev.sh    # Bash script for concurrent execution
-├── start-dev.js    # Node.js script for concurrent execution
-└── package.json    # Root package.json for concurrent execution
+├── client/                    # React frontend application
+│   ├── src/                   # Source code
+│   │   ├── components/        # React components (UI, wizard, layout)
+│   │   ├── pages/             # Page components
+│   │   ├── lib/               # Utilities and configurations
+│   │   │   ├── contracts/     # Smart contract ABIs
+│   │   │   └── api-client.ts  # API client
+│   │   └── hooks/             # Custom React hooks
+│   ├── public/                # Static assets
+│   ├── tests/                 # Frontend tests
+│   ├── package.json
+│   └── vite.config.ts         # Vite configuration
+│
+├── zkml/                      # ZKML backend (FastAPI)
+│   ├── api/                   # FastAPI application
+│   │   └── main.py            # API endpoints
+│   ├── models/                # Trained ML models and artifacts
+│   ├── data/                  # Dataset files
+│   ├── tests/                 # Backend tests
+│   ├── data_processing.py     # Data preprocessing
+│   ├── train_model.py         # Model training
+│   ├── explainability.py      # SHAP explanations
+│   ├── ezkl_pipeline.py      # ZK proof pipeline
+│   └── requirements.txt       # Python dependencies
+│
+├── contracts/                 # Smart contracts (Hardhat)
+│   ├── contracts/             # Solidity contracts
+│   │   ├── Verifier.sol       # EZKL Groth16 verifier
+│   │   └── PrivateCreditLending.sol  # Main lending contract
+│   ├── scripts/               # Deployment and utility scripts
+│   │   ├── deploy_all.ts      # Deployment script
+│   │   └── export_abis.ts     # ABI export script
+│   ├── test/                  # Contract tests
+│   ├── abis/                  # Exported contract ABIs
+│   └── hardhat.config.ts      # Hardhat configuration
+│
+├── tests/                     # End-to-end tests
+│   ├── e2e/                   # E2E test suite
+│   └── integration/           # Integration tests
+│
+├── Dockerfile                 # Unified Dockerfile for deployment
+├── docker-compose.yml         # Docker Compose configuration
+├── docker-entrypoint.sh       # Docker entrypoint script
+├── nginx.conf                 # Nginx configuration
+├── supervisord.conf           # Supervisor configuration
+├── start-dev.sh               # Bash script for concurrent execution
+├── start-dev.js               # Node.js script for concurrent execution
+├── package.json               # Root package.json
+├── VeilScore_Pitch_Deck.html # Pitch deck (HTML)
+├── VeilScore - Pitch Deck.pdf # Pitch deck (PDF)
+├── DOCKER.md                  # Docker documentation
+└── README.md                  # This file
 ```
 
 ## Docker Deployment
