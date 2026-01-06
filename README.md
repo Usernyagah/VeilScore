@@ -6,6 +6,8 @@ Private credit scoring with zero-knowledge proofs on blockchain.
 
 **🌐 Live Site:** [https://veilscore.onrender.com/](https://veilscore.onrender.com/)
 
+**📄 Pitch Deck:** [VeilScore - Pitch Deck.pdf](./VeilScore%20-%20Pitch%20Deck.pdf)
+
 **Network:** Mantle Sepolia Testnet (Chain ID: 5003)
 
 **Deployed Contracts:**
